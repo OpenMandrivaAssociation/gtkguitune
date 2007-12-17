@@ -10,7 +10,6 @@ Source0: %{name}-%{version}.tar.bz2
 License: GPL
 Group: Sound
 Url: http://www.geocities.com/harpin_floh/kguitune_page.html
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: libgtkmm1.2-devel, libstdc++6-devel
 
 %description
