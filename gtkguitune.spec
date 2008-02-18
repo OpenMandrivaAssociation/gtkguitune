@@ -2,7 +2,7 @@
 %define version 0.7
 %define release  %mkrel 2
 
-Summary: Guitune is a linux program for tuning guitars
+Summary: Linux program for tuning guitars
 Name: %{name}
 Version: %{version}
 Release: %{release}
