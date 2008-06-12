@@ -46,11 +46,15 @@ make install
 install -m 644 -D guitune $RPM_BUILD_ROOT%{_menudir}/guitune
 install -m 644 -D guitune_logo.xpm $RPM_BUILD_ROOT%{_miconsdir}/guitune_logo.xpm
 
+%if %mdkversion < 200900
 %post
 %{update_menus}
+%endif
 
+%if %mdkversion < 200900
 %postun
 %{clean_menus}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
