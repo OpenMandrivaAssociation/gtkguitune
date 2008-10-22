@@ -1,17 +1,17 @@
 %define name gtkguitune
-%define version 0.7
-%define release  %mkrel 4
+%define version 0.8
+%define release  %mkrel 1
 
 Summary: Linux program for tuning guitars
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: %{name}-%{version}.tar.bz2
-License: GPL
+Source0: http://www.geocities.com/harpin_floh/mysoft/%{name}-gtk2-%{version}.tar.gz
+License: GPLv2+
 Group: Sound
 Url: http://www.geocities.com/harpin_floh/kguitune_page.html
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: gtkmm-devel, libstdc++6-devel
+BuildRequires: gtkmm2.4-devel
 
 %description
 Guitune is a linux program for tuning guitars and other instruments
@@ -34,35 +34,40 @@ you need a non-zero triggerlevel. It is preadjusted to a level of 60% of the
 current maximum which should be able to deal with most instruments.
 
 %prep
-%setup -q
+%setup -q -n %name
 
 %build
-./configure --prefix=$RPM_BUILD_ROOT%{_prefix}
-make
-
+%configure2_5x
 %install
 rm -rf $RPM_BUILD_ROOT
-make install
-install -m 644 -D guitune $RPM_BUILD_ROOT%{_menudir}/guitune
-install -m 644 -D guitune_logo.xpm $RPM_BUILD_ROOT%{_miconsdir}/guitune_logo.xpm
-
-%if %mdkversion < 200900
-%post
-%{update_menus}
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%endif
+%makeinstall_std
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
+cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%name.desktop << EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=gtkGuitune
+Categories=AudioVideo;GTK;Audio;
+Comment=Tune your Guitar
+TryExec=gtkguitune
+Exec=gtkguitune
+Icon=gtkguitune_logo
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%if %mdvver < 200900
+%post
+%update_icon_cache hicolor
+%postun
+%clean_icon_cache hicolor
+%endif
+
 %files
 %defattr(-,root,root)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%doc AUTHORS NEWS README
 %{_bindir}/gtkguitune
-%{_menudir}/guitune
-%{_miconsdir}/guitune_logo.xpm
+%_datadir/icons/hicolor/scalable/apps/guitune_logo.svg
+%_datadir/applications/mandriva*
 
