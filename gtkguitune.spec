@@ -1,6 +1,6 @@
 %define name gtkguitune
 %define version 0.8
-%define release  %mkrel 1
+%define release  %mkrel 2
 
 Summary: Linux program for tuning guitars
 Name: %{name}
