@@ -9,7 +9,7 @@ Release: %{release}
 Source0: http://www.geocities.com/harpin_floh/mysoft/%{name}-gtk2-%{version}.tar.gz
 License: GPLv2+
 Group: Sound
-Url: http://www.geocities.com/harpin_floh/kguitune_page.html
+Url: https://www.geocities.com/harpin_floh/kguitune_page.html
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: gtkmm2.4-devel
 
