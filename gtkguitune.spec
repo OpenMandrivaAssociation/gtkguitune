@@ -11,6 +11,11 @@ License: GPLv2+
 Group: Sound
 Url: https://www.geocities.com/harpin_floh/kguitune_page.html
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires: gtkmm2.4-devel
 
 %description
